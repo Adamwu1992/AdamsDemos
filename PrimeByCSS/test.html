@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用CSS做素数筛选</title>
+    <style>
+        body {
+            /*将三个参数重置，目的是将参数的作用域扩展到body内可用*/
+            counter-reset: count nonprime-count prime-count;
+        }
+        li {
+            color: #f00;
+            display: inline-block;
+            counter-increment: count;
+        }
+        li::before {
+            content: counter(count) ', ';
+        }
+        /*最后一个不加逗号*/
+        li:last-child::before {
+            content: counter(count)
+        }
+        /*删选出非素数*/
+        li:first-child,
+        li:nth-child(2n + 4),
+        li:nth-child(3n + 6),
+        li:nth-child(5n + 10),
+        li:nth-child(7n + 14)
+        {
+            color: #ccc;
+            /*记录总数和非素数个数*/
+            counter-increment: count nonprime-count;
+        }
+        p::before {
+            content: '当前总数为' counter(count) '，其中非素数个数为' counter(nonprime-count) '，素数个数为' counter(prime-count);
+        }
+        /*删选出素数*/
+        li:not(:first-child):not(:nth-child(2n + 4)):not(:nth-child(3n + 6)):not(:nth-child(5n + 10)):not(:nth-child(7n + 14)) {
+            /*记录总数和素数个数*/
+            counter-increment: count prime-count;
+        }
+    </style>
+</head>
+<body>
+
+<ul id="app"></ul>
+<p></p>
+
+<script>
+    let i = 0, ul = document.getElementById('app'), li;
+    while (i++ !== 20) {
+        ul.appendChild(li = document.createElement('li'));
+//        li.innerHTML = '  -- ' + i;
+    }
+</script>
+</body>
+</html>

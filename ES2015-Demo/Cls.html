@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>类</title>
+</head>
+<body>
+<h1>类</h1>
+<script>
+    class Animal {
+        constructor() {
+            this.type = 'animal';
+        }
+        say(s) {
+            console.log(this.type + ' says ' + s);
+        }
+    }
+
+    let animal = new Animal();
+
+    class Cat extends Animal {
+        constructor() {
+            super();
+            this.type = 'cat';
+        }
+    }
+
+    let cat = new Cat();
+
+    cat.say('hello world');
+</script>
+</body>
+</html>

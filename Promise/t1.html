@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise</title>
+</head>
+<body>
+<script src="promise.js"></script>
+<script>
+    var wait = function () {
+        var p = new Promise();
+        var f = function () {
+            var n = Math.random();
+            console.log(n);
+            if(n > .1) {
+                p.resolve();
+            }else {
+                p.reject();
+            }
+        }
+        setTimeout(f, 3000);
+        return p;
+    }
+
+    /*wait().done(function () {
+        console.log('haha');
+    }).fail(function () {
+        console.log('error');
+    }).done(function () {
+        console.log('hello world')
+    }).then(function () {
+        console.log('ximata')
+    }, function () {
+        console.log('liubiya')
+    })*/
+
+
+    var wait2 = function () {
+        var p = new Promise();
+        setTimeout(function () {
+            console.log('wait2 is done');
+            p.resolve();
+        }, 1);
+
+        return p;
+    }
+
+    when(wait, wait2).always(function () {
+        console.log('999');
+        console.log(`hello world`);
+    })
+
+
+</script>
+</body>
+</html>

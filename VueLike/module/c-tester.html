@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>指令解释器</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <!-- name -->
+        <div class="{{name}}">
+            <label>Name Xiao <!--Ming-->:</label>
+            <input name="name" id="name" type="text"/>
+        </div>
+        <!-- age -->
+        <div class="{{name}}">
+            <label>Name:</label>
+            <input name="age" id="age" type="text"/>
+        </div>
+    </div>
+    <a href="javascript:addEl()">AddEl</a>
+<script src="compiler.js"></script>
+<script>
+    var compiler = new Compiler({});
+
+    var s = compiler.parseText("<a name='xm'>{{name}} will be {{state}}</a>");
+
+    console.log(s);
+
+
+    var node = document.getElementById('app');
+//    var fragment = compiler.nodeToFragment(node);
+
+//    console.log(fragment);
+
+    var child, f = document.createDocumentFragment();
+
+    while(child = node.firstChild) {
+
+        ignore(child);
+
+        f.appendChild(child);
+    }
+
+    console.log(f);
+
+
+    function ignore(node) {
+        console.log(node.nodeType + ' -- ' + node.textContent)
+    }
+
+
+</script>
+</body>
+</html>
