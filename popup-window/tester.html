@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹出窗口</title>
+    <style>
+        html, body {
+            overflow: hidden;
+            background-color: #ccc;
+        }
+        .u-overlay {
+            position: absolute;
+            top:0;
+            left:0;
+            background-color: #ccc;
+            opacity: 0.5;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+        }
+        .u-window {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<h1>hello world</h1>
+<div id="popup" class="u-window">
+    <h2>welcome home</h2>
+</div>
+<script src="PopupWindow.js"></script>
+<script>
+
+    _u.popupWindow.init({
+        win: 'popup',
+        width: '300px',
+        height: 100
+    })
+</script>
+</body>
+</html>

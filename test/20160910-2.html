@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>语义化</title>
+    <style>
+        .logo {
+            display: inline-block;
+            height: 42px;
+            line-height: 42px;
+            background-color: #cccccc;
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo" id="logo" style="font-size: 16px">HelloWorld</div>
+    </header>
+    <nav>This is nav</nav>
+</body>
+<script>
+    var logo = document.getElementById('logo');
+    console.log(logo.style.border);
+    var style = window.getComputedStyle(logo, null);
+    console.log(style.border);
+</script>
+</html>

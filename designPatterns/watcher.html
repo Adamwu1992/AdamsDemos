@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>观察者模式</title>
+</head>
+<body>
+<script>
+    dp = window.dp || {};
+    dp.extend = function (subClass, superClass) {
+
+        var F = function () {};
+        F.prototype = superClass.prototype;
+
+        subClass.prototype = new F();
+
+        subClass.prototype.constructor = subClass;
+
+        //将子类的superClass属性指向父类的prototype，弱化子类与父类的耦合
+        subClass.superClass = superClass.prototype;
+        //将子类的superClass属性的构造函数设置正确
+        if(superClass.prototype.constructor == Object.prototype.constructor) {
+            superClass.prototype.constructor = superClass;
+        }
+
+    }
+
+    /**
+     * 基础类
+     * 定义了fire和on事件
+     * @constructor
+     */
+    var Base = function () {
+        this.Events = {}
+    }
+    Base.prototype.getEvents = function () {
+        return this.Events;
+    }
+    Base.prototype.on = function () {
+        this.Events[arguments[0]] = arguments[1];
+    }
+    Base.prototype.fire = function () {
+        this.Events[arguments[0]](arguments[1]);
+    }
+
+
+    /**
+     * 房间类
+     * @param id
+     * @constructor
+     */
+    var Room = function (id) {
+        Room.superClass.constructor.call(this);
+        this.roomId = id;
+    }
+    //这一步会改变类的原型链，所以此步之前设置的原型链无效，此步之后只能添加原型链方法
+    dp.extend(Room, Base);
+    Room.prototype.service = function () {
+        this.fire('service', this);
+    }
+
+    /**
+     * 酒店类
+     * @constructor
+     */
+    var Hotel = function () {
+        Hotel.superClass.constructor.call(this);
+    }
+    dp.extend(Hotel, Base);
+    Hotel.prototype.addRoom = function () {
+        room.on('service', function (e) {
+            console.log(e)
+        })
+    }
+
+    var hotel = new Hotel(), room = new Room('100');
+
+
+    hotel.addRoom(room)
+
+
+    room.service();
+</script>
+</body>
+</html>

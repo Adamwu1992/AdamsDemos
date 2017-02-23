@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .drap-button {
+            display: inline-block;
+
+        }
+        .btn_drap_button {
+            display: inline-block;
+            border: 1px solid #cccccc;
+            border-right: 0;
+            border-radius: 5px 0 0 5px;
+            height: 32px;
+            line-height: 32px;
+            padding: 0 10px;
+            text-align: center;
+        }
+        .drap_button_drap {
+            display: inline-block;
+            height: 32px;
+            width: 15px;
+            background-color: #aaa;
+            border:1px solid #cccccc;
+            border-left: 0;
+            border-radius: 0 5px 5px 0;
+            margin-left: -3px;
+            vertical-align: top;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style: none;
+        }
+        .dropList {
+            position: absolute;
+            display: block;
+            border: 1px solid #cccccc;
+            border-top:0;
+        }
+        .dropList .btn_drap_button {
+            border:none;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="buttonDrop">
+    <div class="drap-button">
+        <div class="btn_drap_button" style="width: 100px">导出</div>
+        <a href="javascript:void(0)" class="drap_button_drap"></a>
+    </div>
+    <ul class="dropList">
+        <li>
+            <span class="btn_drap_button">发票导出明细</span>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

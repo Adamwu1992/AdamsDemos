@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+this is text node
+<h1 id="h">Hello World</h1>
+<!-- Chapter 1 section -->
+<div class="cp">Chapter 1</div>
+<p>content</p>
+</body>
+<script>
+
+    /**
+     * 基本类型为值传递，函数内改变参数不会影响原值
+     * 对象类型为引用传递，函数内改变参数会影响原值
+     * @type {number}
+     */
+    var a = 100, obj = {a: 0};
+
+    function output(v) {
+        if(typeof v === 'number') {
+            v = {a: 101}
+        }else {
+            v.a = 'Hello';
+        }
+        console.log(v);
+    }
+
+    output(a);
+    output(obj);
+
+    console.log(a)
+    console.log(obj)
+
+</script>
+</html>

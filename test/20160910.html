@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="../../lib/jquery.min.js"></script>
+<script>
+
+
+    var f1 = function() {
+        var hello = 'Hello', world = 'World';
+        return hello;
+    };
+
+    var f2 = function() {
+        var hello = 'Hello', world = 'World';
+        return hello;
+    }();
+
+    function foo(x) {
+        var tmp = 3;
+        return function(y) {
+            console.log(++tmp + x + y);
+        }
+    }
+
+    var bar = foo(2);
+
+    $(function() {
+        console.log(f1);
+        console.log(f1.world);
+        console.log(f2);
+        console.log(f2.world);
+
+        bar(10);
+        bar(10);
+    });
+</script>
+</body>
+</html>

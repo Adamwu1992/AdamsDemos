@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>保存网页为图片并下载</title>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            display: table;
+            height: 100%;
+            margin: 0 auto;
+        }
+        .wrap {
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .wrap .info {
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 32px;
+            color: #00b5e2;
+        }
+        .wrap .tail {
+            color: #cccccc;
+        }
+        .wrap .img {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrap" id="to_cut">
+        <div class="info">
+            税友软件集团股份有限公司
+        </div>
+        <div class="code">
+            <img src="qyewm.png">
+        </div>
+        <div class="tail">
+            请用微信扫一扫后者长按图片识别
+        </div>
+        <div class="img" id="to_cut2">
+            <h1>我就是来测试下的</h1>
+            <img src="qyewm.png">
+            <p>我就是看看</p>
+        </div>
+    </div>
+
+
+<script src="jquery.min.js"></script>
+<script src="html2canvas.min.js"></script>
+<script>
+
+    $('body').on('click', 'img', function() {
+        html2canvas($('#to_cut')).then(function(canvas) {
+            var _fixType = function(type) {
+                type = type.toLowerCase().replace(/jpg/i, 'jpeg');
+                var r = type.match(/png|jpeg|bmp|gif/)[0];
+                return 'image/' + r;
+            };
+
+            var saveFile = function(data, filename){
+                var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+                save_link.href = data;
+                save_link.download = filename;
+
+                var event = document.createEvent('MouseEvents');
+                event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                save_link.dispatchEvent(event);
+            };
+
+            var type = 'png';
+
+            //将mime-type改为image/octet-stream，强制让浏览器直接download
+            var url = canvas.toDataURL(type).replace(_fixType(type),'image/octet-stream');
+
+            var filename = (new Date()).getTime() + '.' + type;
+            saveFile(url,filename);
+        });
+    })
+</script>
+</body>
+</html>

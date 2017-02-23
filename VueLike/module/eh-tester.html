@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件处理器</title>
+</head>
+<body>
+<script src="event-handler.js"></script>
+<script>
+    var eventHandler = new EventHandler();
+
+    eventHandler.on('hello', this, function () {
+        console.log('hello is on');
+    })
+
+    eventHandler.on('hello', this, function () {
+        console.log('hello world');
+    })
+
+    eventHandler.emit('hello');
+</script>
+</body>
+</html>

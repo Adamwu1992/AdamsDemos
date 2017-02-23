@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .text {
+            width: 500px;
+            height: 200px;
+            border: 1px solid #dddddd;
+        }
+        .btn {
+            display: inline-block;
+            border: 1px solid #dddddd;
+            height: 30px;
+            width: 90px;
+            padding: 5px 10px;
+            margin: 5px;
+            line-height: 30px;
+            text-align: center;
+        }
+        .input-button {
+            border: 0;
+            color: blue;
+            background: #ffffff;
+        }
+        .width {
+            display: inline-block;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="text" class="text" contenteditable="true"></div>
+    <div>
+        <a href="javascript:void(0)" class="btn" id="getv">GetValue</a>
+    </div>
+    <div>
+        <input type="text" id="input" />
+        <a href="javascript:void(0)" class="btn" id="setv">SetValue</a>
+        <button>333</button>
+        <div class="width" id="width"></div>
+    </div>
+<script src="../web/lib/jquery.min.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

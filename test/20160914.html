@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>var and let</title>
+</head>
+<body>
+<script>
+
+    /*
+    * let声明的变量不会提升到最前
+    * let声明周期只在当前最小的代码块中
+    */
+
+    function foo() {
+
+        console.log(x);
+//        console.log(y);
+//        console.log(a);
+
+        var x = 1;
+        let a = 9;
+
+        console.log(z);
+
+        if(1) {
+            let y = 2;
+            var z = 3;
+        }
+
+        console.log(z);
+        console.log(y);
+    }
+
+    foo();
+
+//    console.log(x);
+</script>
+</body>
+</html>

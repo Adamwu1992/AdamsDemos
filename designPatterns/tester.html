@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    mini = window.mini || {};
+    mini.extend = function (newClass, sp, overrides) {
+        if(typeof sp != 'function') {
+            return this;
+        }
+        var sb = newClass, sbp = sb.prototype, spp = sp.prototype;
+        if(sb.superClass == spp) {
+            return;
+        }
+        sb.superClass = spp;
+        sb.superClass.constructor = sp;
+
+        for(var p in spp) {
+            sbp[p] = spp[p];
+        }
+        if(overrides) {
+            for(var p in overrides) {
+                sbp[p] = overrides[p];
+            }
+        }
+        return sb;
+    }
+
+
+    var Animal = function () {
+        this.a = 'hello';
+        this.b = function () {
+            console.log(this.a);
+        }
+    }
+
+    var Cat = function () {
+        this.c = 'world';
+        Cat.superClass.constructor.call(this);
+    }
+
+    var Cat2 = mini.extend(Cat, Animal, {
+        getName: function () {
+            console.log('aaa');
+        }
+    });
+
+    console.log(new Cat2);
+
+</script>
+</body>
+</html>

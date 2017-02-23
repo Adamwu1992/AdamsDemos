@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{name}} say {{msg}} to {{you}}
+    <p>
+        {{you}}
+    </p>
+</div>
+<script src="../wue.js"></script>
+<script>
+    var wue = new Wue({
+        el: 'app',
+        data: {
+            msg: 'Hello World',
+            you: "hhh",
+            child: {
+                id: 19,
+                name: 'asd'
+            }
+        }
+    });
+    console.log(wue);
+
+    wue.$watch('child', function () {
+        console.log('child changed');
+    })
+    wue.$watch('msg', function () {
+        console.log('msg changed');
+    })
+
+</script>
+</body>
+</html>

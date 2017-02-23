@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hover触发的3D效果</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body{
+            background: white;
+            padding: 20px;
+        }
+        div#test {
+            width: 100%;
+            height: 500px;
+            background: #fff;
+            padding: 100px 0;
+            margin: 100px auto;
+            border: 1px solid #ddd;
+
+            -webkit-perspective: 1000px;
+        }
+        #banner{
+            height: 300px;
+            width: 400px;
+            margin: 0 auto;
+            background:  #37D7B2;
+            transition: transform 0.1s;
+            box-shadow: 0 0 15px rgba(0,0,0,0.75);
+            text-align: center;
+            line-height: 300px;
+            font-size: 50px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div id="test">
+    <div id="banner">banner</div>
+</div>
+
+<script src="../../lib/jquery.min.js"></script>
+<script>
+    $('#test').on('mousemove', function(e){
+
+        var offset = $('#test').offset()
+
+        var x = e.pageX - offset.left
+        var y = e.pageY - offset.top
+
+
+        var centerX = $('#test').outerWidth() /2
+        var centerY = $('#test').outerHeight() /2
+
+        /*var deltaX = centerX - (x - centerX)
+        var deltaY = centerY - (y - centerY)*/
+        var deltaX = x - centerX
+        var deltaY = y - centerY
+
+        var percentX = deltaX / centerX
+        var percentY = deltaY / centerY
+
+        var deg = 10
+
+
+
+        $('#banner').css({
+            transform: 'rotateX('+deg*-percentY + 'deg)'+
+            ' rotateY('+deg*percentX+'deg)'
+        })
+
+
+    }).on('mouseleave', function(){
+        $('#banner').css({
+            transform: ''
+        })
+    })
+</script>
+</body>
+</html>

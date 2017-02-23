@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax测试-防止重复提交</title>
+</head>
+<body>
+<a href="javascript:initXhr()">InitXhr</a>
+<hr/>
+<a href="javascript:getData()">GetData</a>
+<hr/>
+<a href="javascript:getXhr()">GetXhr</a>
+<script src="../../lib/jquery.min.js"></script>
+<script>
+    var xhr;
+
+    $('body').on('mousemove', function () {
+        initXhr();
+    })
+
+    function initXhr() {
+
+        if(xhr && xhr.state() === 'pending') {
+            console.log(xhr);
+//            return;
+            xhr.abort();
+        }
+
+        xhr = $.get('data.json', function (obj) {
+            console.log('get success');
+        })
+    }
+
+    function getData() {
+        xhr.success(function (obj) {
+            console.log(obj);
+        })
+    }
+
+    function getXhr() {
+        console.log(xhr);
+    }
+
+</script>
+</body>
+</html>
