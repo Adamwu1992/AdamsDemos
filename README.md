@@ -14,13 +14,7 @@
 利用纯css实现质数查找
 ***
 
-## ES2015-Demo
-***
-
 ## D3
-***
-
-## CSS
 ***
 
 ## CountDown
@@ -29,8 +23,4 @@
 
 ## canvas2image&download
 将画布转化成图片并下载
-***
-
-## Base
-其他基础测试
 ***
