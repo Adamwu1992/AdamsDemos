@@ -203,8 +203,8 @@
 
     var now = new Date().valueOf();
     // new countDown({});
-    new countDown({
+    /*new countDown({
         endTime: now + 8*1000
-    })
+    })*/
 
 })();
